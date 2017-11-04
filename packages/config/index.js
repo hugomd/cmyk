@@ -1,0 +1,11 @@
+const {
+  POSTGRES_DATABASE = 'cmyk',
+  POSTGRES_USERNAME,
+  POSTGRES_PASSWORD = ''
+} = process.env;
+
+module.exports = {
+  POSTGRES_DATABASE,
+  POSTGRES_USERNAME,
+  POSTGRES_PASSWORD
+};

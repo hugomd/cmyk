@@ -1,0 +1,28 @@
+{
+  "name": "cmyk",
+  "version": "1.0.0",
+  "description": "A colourful Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@g.hu.md:hugo/cmyk.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "colours",
+    "cmyk"
+  ],
+  "author": {
+    "name": "Hugo Muller-Downing",
+    "email": "npmjs@hugo.sx",
+    "url": "hu.md"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^2.5.1"
+  }
+}

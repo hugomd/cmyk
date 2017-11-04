@@ -1,0 +1,18 @@
+{
+  "name": "@cmyk/bot",
+  "version": "1.0.0",
+  "description": "CMYK Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Hugo Muller-Downing",
+    "email": "npmjs@hugo.sx",
+    "url": "hu.md"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cmyk-core": "^1.0.0"
+  }
+}
