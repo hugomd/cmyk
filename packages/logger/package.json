@@ -1,6 +1,6 @@
 {
-  "name": "@cmyk/logger",
-  "version": "1.0.1",
+  "name": "@hugomd/cmyk-logger",
+  "version": "1.0.2",
   "description": "Logger for CMYK Discord bot",
   "main": "index.js",
   "scripts": {

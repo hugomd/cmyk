@@ -1,6 +1,6 @@
 {
-  "name": "@cmyk/bot",
-  "version": "1.0.1",
+  "name": "@hugomd/cmyk-bot",
+  "version": "1.0.2",
   "description": "CMYK Discord bot",
   "main": "index.js",
   "scripts": {

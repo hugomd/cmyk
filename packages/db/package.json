@@ -1,6 +1,6 @@
 {
-  "name": "@cmyk/db",
-  "version": "1.0.1",
+  "name": "@hugomd/cmyk-db",
+  "version": "1.0.2",
   "description": "Database wrapper for CMYK Discord bot",
   "main": "index.js",
   "scripts": {
