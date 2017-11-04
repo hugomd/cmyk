@@ -1,7 +1,7 @@
 {
-  "name": "@hugomd/cmyk-config",
+  "name": "@hugomd/cmyk-plugin-help",
   "version": "1.0.3",
-  "description": "Config for CMYK Discord bot",
+  "description": "Help plugin for CMYK Discord bot",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,6 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@hugomd/cmyk-logger": "^1.0.3"
+    "@hugomd/cmyk-config": "^1.0.3",
+    "@hugomd/cmyk-plugin-base": "^1.0.3"
   }
 }

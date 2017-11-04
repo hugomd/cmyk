@@ -1,6 +1,6 @@
 {
   "name": "@hugomd/cmyk-db",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Database wrapper for CMYK Discord bot",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,8 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@hugomd/cmyk-config": "^1.0.3",
+    "@hugomd/cmyk-logger": "^1.0.3",
     "sequelize": "^4.22.2"
   }
 }

@@ -1,10 +1,11 @@
 {
   "name": "@hugomd/cmyk-bot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CMYK Discord bot",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-bot": "node index.js",
+    "start-bot-dev": "nodemon index.js"
   },
   "author": {
     "name": "Hugo Muller-Downing",
@@ -13,6 +14,11 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@hugomd/cmyk-core": "^1.0.3",
+    "@hugomd/cmyk-logger": "^1.0.3",
     "cmyk-core": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@hugomd/cmyk-core",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Core of the CMYK Discord bot",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@hugomd/cmyk-config": "^1.0.3",
+    "@hugomd/cmyk-logger": "^1.0.3",
+    "@hugomd/cmyk-plugin-help": "^1.0.3",
+    "@hugomd/cmyk-plugin-ping": "^1.0.3",
     "discord.js": "^11.2.1"
   }
 }
