@@ -1,7 +1,7 @@
-<p align="center">
+<div align="center">
   <img src='https://d.pr/i/NcfPDt/5LjTzdr5.png' />
   <h1>CMYK 👨‍🎨</h1>
-</p>
+</div>
 
 > CMYK is a pretty colour model, and also a [very pretty keyset](http://d.pr/i/3KEMFN/3vyntih8). This, however, is a Discord bot.
 
