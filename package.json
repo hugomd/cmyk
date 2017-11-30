@@ -5,7 +5,8 @@
   "scripts": {
     "test": "npm test",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "format": "prettier --write --single-quote ."
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^1.12.1",
+    "prettier": "^1.8.2"
   },
   "dependencies": {
     "discord.js": "^11.2.1",

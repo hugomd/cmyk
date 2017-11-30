@@ -1,11 +1,11 @@
-const Discord = require('discord.js');
-const RequireAll = require('require-all');
+const Discord = require("discord.js");
+const RequireAll = require("require-all");
 
-const Logger = require('./utils/logger');
-const Config = require('./config');
+const Logger = require("./utils/logger");
+const Config = require("./config");
 
 const Plugins = RequireAll({
-  dirname: __dirname + '/plugins',
+  dirname: __dirname + "/plugins",
   filter: /(index)\.js$/,
   excludeDirs: /^\.(git|svn)$/,
   recursive: true,
@@ -15,7 +15,6 @@ const Plugins = RequireAll({
 });
 
 class Core {
-
   constructor() {
     this.validateConfig(Config);
   }
@@ -25,36 +24,36 @@ class Core {
   }
 
   async load() {
-    Logger.logInfo('Loading plugins and setting up...');
+    Logger.logInfo("Loading plugins and setting up...");
     await this.setPresence();
-		// TODO: Setup Database
-		// TODO: Register events
+    // TODO: Setup Database
+    // TODO: Register events
     this.plugins = Object.keys(Plugins).map(key => Plugins[key].index);
     this.registerPlugins();
     this.setupMessageHandler();
     this.compileHelp();
-    Logger.logInfo('Done!');
+    Logger.logInfo("Done!");
   }
 
   async setPresence() {
     return this.client.user.setPresence({
-      status: 'online',
+      status: "online",
       afk: false,
       game: {
         name: Config.DISCORD_STATUS,
-        url: 'https://g.hu.md/hugo/aqua'
+        url: "https://g.hu.md/hugo/aqua"
       }
     });
   }
 
   registerPlugins() {
-    Logger.logInfo('> Registering plugins..');
+    Logger.logInfo("> Registering plugins..");
     this.plugins.map(plugin => plugin.register(this.client));
   }
 
   compileHelp() {
-    Logger.logInfo('> Compiling help..');
-    let helpText = '';
+    Logger.logInfo("> Compiling help..");
+    let helpText = "";
     let pluginHelp = {};
     this.plugins.map(plugin => {
       const pluginConfig = plugin.config();
@@ -69,33 +68,33 @@ ${pluginConfig.help}
   }
 
   async connect() {
-		// TODO: Connect to Postgres
-		// Connect to Discord
+    // TODO: Connect to Postgres
+    // Connect to Discord
     return this.client.login(Config.DISCORD_TOKEN).then(async () => {
-      Logger.logSuccess('> Connected');
-      Logger.logInfo('> Loading bot..');
+      Logger.logSuccess("> Connected");
+      Logger.logInfo("> Loading bot..");
       await this.load();
     });
   }
 
   setupMessageHandler() {
-    Logger.logInfo('Setting up message handler..');
-    this.client.on('message', msg => {
+    Logger.logInfo("Setting up message handler..");
+    this.client.on("message", msg => {
       if (
-				!msg.content.match(new RegExp('^\\' + Config.DISCORD_PREFIX + '\\w+'))
-			) {
+        !msg.content.match(new RegExp("^\\" + Config.DISCORD_PREFIX + "\\w+"))
+      ) {
         return;
       }
       if (msg.author.bot) {
         return;
       }
       Logger.logMsg(msg);
-      this.client.emit('pluginmessage', msg);
+      this.client.emit("pluginmessage", msg);
     });
   }
 
   validateConfig(config) {
-    Logger.logInfo('> Validating config..');
+    Logger.logInfo("> Validating config..");
     const undefConf = [];
     Object.keys(config).map(key => {
       if (config[key] === undefined) {
@@ -103,8 +102,10 @@ ${pluginConfig.help}
       }
     });
     if (undefConf.length > 0) {
-      undefConf.map(key => Logger.logError(`> ${key} environment variable undefined.`));
-      throw new Error('All Config variables must be defined');
+      undefConf.map(key =>
+        Logger.logError(`> ${key} environment variable undefined.`)
+      );
+      throw new Error("All Config variables must be defined");
     }
   }
 }
