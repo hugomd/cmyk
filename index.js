@@ -9,3 +9,8 @@ const Logger = require('./utils/logger');
 		Logger.logError(err);
 	}
 })();
+
+// Fix for now.sh deployments
+const {createServer} = require('http')
+const server = createServer(() => {})
+server.listen(3000)
