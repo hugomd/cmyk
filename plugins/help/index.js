@@ -9,7 +9,7 @@ class Help extends BasePlugin {
 			help: `\`${Config.DISCORD_PREFIX}help\` returns help information`,
 			regex: new RegExp(`^${Config.DISCORD_PREFIX}help`)
 		};
-  }
+	}
 
 	async handler(msg) {
 		super.handler(msg);

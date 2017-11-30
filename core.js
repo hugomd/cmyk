@@ -5,20 +5,20 @@ const Logger = require('./utils/logger');
 const Config = require('./config');
 
 const Plugins = RequireAll({
-  dirname: __dirname + '/plugins',
-  filter: /(index)\.js$/,
-  excludeDirs: /^\.(git|svn)$/,
-  recursive: true,
-  resolve: plugin => {
-    return new plugin();
-  }
+	dirname: __dirname + '/plugins',
+	filter: /(index)\.js$/,
+	excludeDirs: /^\.(git|svn)$/,
+	recursive: true,
+	resolve: plugin => {
+		return new plugin();
+	}
 });
 
 class Core {
 
-  constructor() {
-    this.validateConfig(Config);
-  }
+	constructor() {
+		this.validateConfig(Config);
+	}
 	async run() {
 		this.client = new Discord.Client();
 		await this.connect();
@@ -29,7 +29,7 @@ class Core {
 		await this.setPresence();
 		// TODO: Setup Database
 		// TODO: Register events
-    this.plugins = Object.keys(Plugins).map(key => Plugins[key].index);
+		this.plugins = Object.keys(Plugins).map(key => Plugins[key].index);
 		this.registerPlugins();
 		this.setupMessageHandler();
 		this.compileHelp();
@@ -48,12 +48,12 @@ class Core {
 	}
 
 	registerPlugins() {
-    Logger.logInfo('> Registering plugins..');
+		Logger.logInfo('> Registering plugins..');
 		this.plugins.map(plugin => plugin.register(this.client));
 	}
 
 	compileHelp() {
-    Logger.logInfo('> Compiling help..');
+		Logger.logInfo('> Compiling help..');
 		let helpText = '';
 		let pluginHelp = {};
 		this.plugins.map(plugin => {
@@ -79,7 +79,7 @@ ${pluginConfig.help}
 	}
 
 	setupMessageHandler() {
-    Logger.logInfo('Setting up message handler..');
+		Logger.logInfo('Setting up message handler..');
 		this.client.on('message', msg => {
 			if (
 				!msg.content.match(new RegExp('^\\' + Config.DISCORD_PREFIX + '\\w+'))
@@ -88,25 +88,25 @@ ${pluginConfig.help}
 			}
 			if (msg.author.bot) {
 				return;
-      }
+			}
 			Logger.logMsg(msg);
 			this.client.emit('pluginmessage', msg);
 		});
-  }
-  
-  validateConfig(config) {
-    Logger.logInfo('> Validating config..');
-    const undefConf = [];
-    Object.keys(config).map(key => {
-      if (config[key] === undefined) {
-        undefConf.push(key);
-      }
-    });
-    if (undefConf.length > 0) {
-      undefConf.map(key => Logger.logError(`> ${key} environment variable undefined.`));
-      throw new Error('All Config variables must be defined');
-    }
-  }
+	}
+
+	validateConfig(config) {
+		Logger.logInfo('> Validating config..');
+		const undefConf = [];
+		Object.keys(config).map(key => {
+			if (config[key] === undefined) {
+				undefConf.push(key);
+			}
+		});
+		if (undefConf.length > 0) {
+			undefConf.map(key => Logger.logError(`> ${key} environment variable undefined.`));
+			throw new Error('All Config variables must be defined');
+		}
+	}
 }
 
 module.exports = Core;

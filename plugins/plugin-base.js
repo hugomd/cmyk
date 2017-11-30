@@ -24,11 +24,11 @@ class Base {
 				Logger.logError(err);
 			}
 		});
-  }
-  
-  async preHandler(msg) {
-    return;
-  }
+	}
+
+	async preHandler(msg) {
+		return;
+	}
 
 	async handler(msg) {
 		// TODO: Handle permissions here
@@ -37,7 +37,7 @@ class Base {
 
 	async postHandler(msg) {
 		msg.react(this.status);
-  }
+	}
 
 	config() {
 		return this.conf;
