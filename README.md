@@ -3,6 +3,8 @@
   <h1>CMYK 👨‍🎨</h1>
 </div>
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 > CMYK is a pretty colour model, and also a [very pretty keyset](http://d.pr/i/3KEMFN/3vyntih8). This, however, is a Discord bot.
 
 *This is a work in progress, and most things aren't implemented right now..*
