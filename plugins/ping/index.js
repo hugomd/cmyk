@@ -1,5 +1,5 @@
-const Config = require('@hugomd/cmyk-config');
-const BasePlugin = require('@hugomd/cmyk-plugin-base');
+const Config = require('../../config');
+const BasePlugin = require('../plugin-base.js');
 
 class Ping extends BasePlugin {
 	constructor() {
@@ -20,10 +20,6 @@ class Ping extends BasePlugin {
 				)
 			);
 		return;
-	}
-
-	help() {
-		return 'Help text';
 	}
 
 	config() {

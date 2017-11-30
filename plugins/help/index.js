@@ -1,5 +1,5 @@
-const Config = require('@hugomd/cmyk-config');
-const BasePlugin = require('@hugomd/cmyk-plugin-base');
+const Config = require('../../config');
+const BasePlugin = require('../plugin-base.js');
 
 class Help extends BasePlugin {
 	constructor() {
@@ -9,7 +9,7 @@ class Help extends BasePlugin {
 			help: `\`${Config.DISCORD_PREFIX}help\` returns help information`,
 			regex: new RegExp(`^${Config.DISCORD_PREFIX}help`)
 		};
-	}
+  }
 
 	async handler(msg) {
 		super.handler(msg);
@@ -23,7 +23,7 @@ class Help extends BasePlugin {
 			// Look up individual helptext
 			return;
 		}
-		// Otherwise, return with global help
+    // Otherwise, return with global help
 		msg.author.send(this.client.helpText);
 	}
 

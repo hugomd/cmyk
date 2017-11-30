@@ -1,12 +1,24 @@
 const Discord = require('discord.js');
-const Logger = require('@hugomd/cmyk-logger');
-const Config = require('@hugomd/cmyk-config');
+const RequireAll = require('require-all');
 
-// Plugins
-const Ping = require('@hugomd/cmyk-plugin-ping');
-const Help = require('@hugomd/cmyk-plugin-help');
+const Logger = require('./utils/logger');
+const Config = require('./config');
+
+const Plugins = RequireAll({
+  dirname: __dirname + '/plugins',
+  filter: /(index)\.js$/,
+  excludeDirs: /^\.(git|svn)$/,
+  recursive: true,
+  resolve: plugin => {
+    return new plugin();
+  }
+});
 
 class Core {
+
+  constructor() {
+    this.validateConfig(Config);
+  }
 	async run() {
 		this.client = new Discord.Client();
 		await this.connect();
@@ -15,13 +27,9 @@ class Core {
 	async load() {
 		Logger.logInfo('Loading plugins and setting up...');
 		await this.setPresence();
-		// Setup Discord
-		// - Set presence
-		// Setup Database
-		// Register modules
-		// Register events
-		//
-		this.plugins = [new Ping(), new Help()];
+		// TODO: Setup Database
+		// TODO: Register events
+    this.plugins = Object.keys(Plugins).map(key => Plugins[key].index);
 		this.registerPlugins();
 		this.setupMessageHandler();
 		this.compileHelp();
@@ -40,10 +48,12 @@ class Core {
 	}
 
 	registerPlugins() {
+    Logger.logInfo('> Registering plugins..');
 		this.plugins.map(plugin => plugin.register(this.client));
 	}
 
 	compileHelp() {
+    Logger.logInfo('> Compiling help..');
 		let helpText = '';
 		let pluginHelp = {};
 		this.plugins.map(plugin => {
@@ -59,15 +69,17 @@ ${pluginConfig.help}
 	}
 
 	async connect() {
-		// Connect to Postgres
+		// TODO: Connect to Postgres
 		// Connect to Discord
 		return this.client.login(Config.DISCORD_TOKEN).then(async () => {
 			Logger.logSuccess('> Connected');
+			Logger.logInfo('> Loading bot..');
 			await this.load();
 		});
 	}
 
 	setupMessageHandler() {
+    Logger.logInfo('Setting up message handler..');
 		this.client.on('message', msg => {
 			if (
 				!msg.content.match(new RegExp('^\\' + Config.DISCORD_PREFIX + '\\w+'))
@@ -76,11 +88,25 @@ ${pluginConfig.help}
 			}
 			if (msg.author.bot) {
 				return;
-			}
+      }
 			Logger.logMsg(msg);
 			this.client.emit('pluginmessage', msg);
 		});
-	}
+  }
+  
+  validateConfig(config) {
+    Logger.logInfo('> Validating config..');
+    const undefConf = [];
+    Object.keys(config).map(key => {
+      if (config[key] === undefined) {
+        undefConf.push(key);
+      }
+    });
+    if (undefConf.length > 0) {
+      undefConf.map(key => Logger.logError(`> ${key} environment variable undefined.`));
+      throw new Error('All Config variables must be defined');
+    }
+  }
 }
 
 module.exports = Core;

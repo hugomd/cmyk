@@ -1,5 +1,5 @@
-const Config = require('@hugomd/cmyk-config');
-const Logger = require('@hugomd/cmyk-logger');
+const Config = require('../config');
+const Logger = require('../utils/logger');
 
 class Base {
 	constructor() {
@@ -16,6 +16,7 @@ class Base {
 		client.on('pluginmessage', async msg => {
 			try {
 				if (this.conf.regex.test(msg)) {
+					await this.preHandler(msg);
 					await this.handler(msg);
 					await this.postHandler(msg);
 				}
@@ -23,7 +24,11 @@ class Base {
 				Logger.logError(err);
 			}
 		});
-	}
+  }
+  
+  async preHandler(msg) {
+    return;
+  }
 
 	async handler(msg) {
 		// TODO: Handle permissions here
@@ -32,6 +37,10 @@ class Base {
 
 	async postHandler(msg) {
 		msg.react(this.status);
+  }
+
+	config() {
+		return this.conf;
 	}
 }
 

@@ -1,7 +1,7 @@
 const {
   // Postgres
   POSTGRES_DATABASE = 'cmyk',
-  POSTGRES_USERNAME,
+  POSTGRES_USERNAME = '',
   POSTGRES_PASSWORD = '',
   // Discord
   DISCORD_TOKEN,

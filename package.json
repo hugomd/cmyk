@@ -2,9 +2,10 @@
   "name": "cmyk",
   "version": "1.0.0",
   "description": "A colourful Discord bot",
-  "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^2.5.1"
+    "nodemon": "^1.12.1"
+  },
+  "dependencies": {
+    "discord.js": "^11.2.1",
+    "require-all": "^2.2.0"
   }
 }
