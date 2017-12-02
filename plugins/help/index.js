@@ -7,7 +7,8 @@ class Help extends BasePlugin {
 		this.conf = {
 			name: 'help',
 			help: `\`${config.DISCORD_PREFIX}help\` returns help information`,
-			regex: new RegExp(`^${config.DISCORD_PREFIX}help`)
+			regex: new RegExp(`^${config.DISCORD_PREFIX}help`),
+			react: true
 		};
 	}
 
@@ -20,16 +21,14 @@ class Help extends BasePlugin {
 				msg.author.send(`No such module ${this.args[0]}`);
 				this.status = '🚫';
 			}
-      // Look up individual helptext
+			// Look up individual helptext
 			return;
 		}
-    // Otherwise, return with global help
+		// Otherwise, return with global help
 		msg.author.send(this.client.helpText);
 	}
-
 	config() {
 		return this.conf;
 	}
 }
-
 module.exports = Help;
