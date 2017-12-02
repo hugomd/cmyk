@@ -80,8 +80,7 @@ ${pluginconfig.help}
 
 	setupMessageHandlers() {
 		logger.logInfo('Setting up message handler..');
-
-		this.client.on('message', msg => {
+		const handler = msg => {
 			if (
         !msg.content.match(new RegExp('^\\' + config.DISCORD_PREFIX + '\\w+'))
       ) {
@@ -92,7 +91,10 @@ ${pluginconfig.help}
 			}
 			logger.logMsg(msg);
 			this.client.emit('pluginmessage', msg);
-		});
+		};
+
+		this.client.on('message', handler);
+		this.client.on('messageUpdate', (oldMsg, newMsg) => handler(newMsg));
 	}
 
 	validateconfig(config) {
