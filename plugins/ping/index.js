@@ -1,30 +1,31 @@
-const Config = require('../../config');
+const config = require('../../config');
 const BasePlugin = require('../plugin-base.js');
 
 class Ping extends BasePlugin {
-  constructor() {
-    super();
-    this.conf = {
-      name: 'ping',
-      help: `\`${Config.DISCORD_PREFIX}ping\` responds with pong`,
-      regex: new RegExp(`^${Config.DISCORD_PREFIX}ping`)
-    };
-  }
-  async handler(msg) {
-    super.handler(msg);
-    msg
+	constructor() {
+		super();
+		this.conf = {
+			name: 'ping',
+			help: `\`${config.DISCORD_PREFIX}ping\` responds with pong`,
+			regex: new RegExp(`^${config.DISCORD_PREFIX}ping`)
+		};
+	}
+	async handler(msg) {
+		super.handler(msg);
+		msg
 			.reply('Pinging...')
-			.then(sentMsg =>
+			.then(sentMsg => {
+				const fromDate = sentMsg.createdTimestamp;
+				const toDate = msg.editedTimestamp || msg.createdTimestamp;
 				sentMsg.edit(
-					`Pong! Took ${sentMsg.createdTimestamp - msg.createdTimestamp} ms.`
-				)
-			);
-    return;
-  }
+					`Pong! Took ${fromDate - toDate} ms.`
+				);
+			});
+	}
 
-  config() {
-    return this.conf;
-  }
+	config() {
+		return this.conf;
+	}
 }
 
 module.exports = Ping;
