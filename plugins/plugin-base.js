@@ -6,7 +6,8 @@ class Base {
 		this.conf = {
 			regex: {
 				test: () => false
-			}
+			},
+			react: false
 		};
 		this.status = '✅';
 	}
@@ -16,8 +17,11 @@ class Base {
 		client.on('pluginmessage', async msg => {
 			try {
 				if (this.conf.regex.test(msg)) {
+					await this.checkPermissions(msg);
 					await this.preHandler(msg);
-					await this.handler(msg);
+					await this.handler(msg).catch(() => {
+						this.status = '❌';
+					});
 					await this.postHandler(msg);
 				}
 			} catch (err) {
@@ -26,15 +30,23 @@ class Base {
 		});
 	}
 
+	// TODO
+	async checkPermissions() {}
+
+	// TODO
 	async preHandler() {}
 
 	async handler(msg) {
-		// TODO: Handle permissions here
-		this.args = msg.content.replace(`${config.DISCORD_PREFIX}${this.conf.name}`, '').trim().split(' ');
+		this.args = msg.content
+			.replace(`${config.DISCORD_PREFIX}${this.conf.name}`, '')
+			.trim()
+			.split(' ');
 	}
 
 	async postHandler(msg) {
-		msg.react(this.status);
+		if (this.conf.react) {
+			msg.react(this.status);
+		}
 	}
 
 	config() {
