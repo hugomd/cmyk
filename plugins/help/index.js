@@ -27,8 +27,5 @@ class Help extends BasePlugin {
 		// Otherwise, return with global help
 		msg.author.send(this.client.helpText);
 	}
-	config() {
-		return this.conf;
-	}
 }
 module.exports = Help;

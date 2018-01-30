@@ -29,6 +29,7 @@
     "xo": "^0.18.2"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "chalk": "^2.3.0",
     "discord.js": "^11.2.1",
     "require-all": "^2.2.0",
