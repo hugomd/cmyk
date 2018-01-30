@@ -27,9 +27,10 @@ class Core {
 	async load() {
 		logger.logInfo('Loading plugins and setting up...');
 		await this.setPresence();
+		// TODO: Use node-config for configuration
 		// TODO: Setup Database
 		// TODO: Register events
-		this.plugins = Object.keys(plugins).map(key => plugins[key].index);
+		this.plugins = Object.keys(plugins).map(key => plugins[key].index).filter(key => key !== undefined);
 		this.registerPlugins();
 		this.setupMessageHandlers();
 		this.compileHelp();
@@ -79,7 +80,7 @@ ${pluginconfig.help}
 	}
 
 	setupMessageHandlers() {
-		logger.logInfo('Setting up message handler..');
+		logger.logInfo('> Setting up message handler..');
 		const handler = msg => {
 			if (
         !msg.content.match(new RegExp('^\\' + config.DISCORD_PREFIX + '\\w+'))

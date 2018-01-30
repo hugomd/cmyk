@@ -22,10 +22,6 @@ class Ping extends BasePlugin {
 				);
 			});
 	}
-
-	config() {
-		return this.conf;
-	}
 }
 
 module.exports = Ping;
