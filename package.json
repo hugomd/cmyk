@@ -32,6 +32,7 @@
     "axios": "^0.17.1",
     "chalk": "^2.3.0",
     "discord.js": "^11.2.1",
+    "minimist-string": "^1.0.2",
     "require-all": "^2.2.0",
     "sequelize": "^4.24.0"
   }
