@@ -20,6 +20,7 @@ class Base {
 					await this.checkPermissions(msg);
 					await this.preHandler(msg);
 					await this.handler(msg).catch(() => {
+						// TODO: Handler errors here!!
 						this.status = '❌';
 					});
 					await this.postHandler(msg);

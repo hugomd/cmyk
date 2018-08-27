@@ -10,6 +10,7 @@ class Ping extends BasePlugin {
 			regex: new RegExp(`^${config.DISCORD_PREFIX}ping`)
 		};
 	}
+
 	async handler(msg) {
 		super.handler(msg);
 		msg

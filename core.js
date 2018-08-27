@@ -19,6 +19,7 @@ class Core {
 	constructor() {
 		this.validateconfig(config);
 	}
+
 	async run() {
 		this.client = new Discord.Client();
 		await this.connect();
@@ -83,8 +84,8 @@ ${pluginconfig.help}
 		logger.logInfo('> Setting up message handler..');
 		const handler = msg => {
 			if (
-        !msg.content.match(new RegExp('^\\' + config.DISCORD_PREFIX + '\\w+'))
-      ) {
+				!msg.content.match(new RegExp('^\\' + config.DISCORD_PREFIX + '\\w+'))
+			) {
 				return;
 			}
 			if (msg.author.bot) {
