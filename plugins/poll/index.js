@@ -10,7 +10,7 @@ const help = {
 	usage: 'poll -q \'[question]\' -a \'[answer]\' -a \'[answer]\''
 };
 
-let getLetter = index => String.fromCodePoint(127462 + index);   // 127462 is the decimal code of :regional_indicator_a:
+const getLetter = index => String.fromCodePoint(127462 + index); // 127462 is the decimal code of :regional_indicator_a:
 
 class Poll extends BasePlugin {
 	constructor() {
@@ -57,11 +57,7 @@ class Poll extends BasePlugin {
 					value: answerMsg + '\n'
 				}
 			],
-			timestamp: new Date(),
-			author: {
-				name: 'CMYK',
-				icon_url: 'https://d.pr/i/B8VFju.png'
-			}
+			timestamp: new Date()
 		};
 		try {
 			console.log(embed);
