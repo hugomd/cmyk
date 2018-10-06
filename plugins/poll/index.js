@@ -4,12 +4,6 @@ const minimist = require('minimist-string');
 const config = require('../../config');
 const BasePlugin = require('../plugin-base.js');
 
-const help = {
-	name: 'poll',
-	description: 'Poll starts a new poll.',
-	usage: 'poll -q \'[question]\' -a \'[answer]\' -a \'[answer]\''
-};
-
 const getLetter = index => String.fromCodePoint(127462 + index); // 127462 is the decimal code of :regional_indicator_a:
 
 class Poll extends BasePlugin {
@@ -49,7 +43,7 @@ class Poll extends BasePlugin {
 			color: 3447003,
 			author: {
 				name: 'CMYK',
-				icon_url: 'https://d.pr/i/B8VFju.png'
+				icon_url: 'https://d.pr/i/B8VFju.png' // eslint-disable-line camelcase
 			},
 			fields: [
 				{
@@ -60,12 +54,9 @@ class Poll extends BasePlugin {
 			timestamp: new Date()
 		};
 		try {
-			console.log(embed);
-			const e = new RichEmbed(embed);
-			console.log(e);
 			const response = await msg.channel.sendEmbed(new RichEmbed(embed));
 			for (let i = 0; i < answers.length; i++) {
-				await response.react(getLetter(i));
+				await response.react(getLetter(i)); // eslint-disable-line no-await-in-loop
 			}
 		} catch (err) {
 			console.error(err);

@@ -1,6 +1,5 @@
 const axios = require('axios');
 
-const {logError} = require('../../utils/logger');
 const config = require('../../config');
 const BasePlugin = require('../plugin-base.js');
 const COINS = require('./coins');
