@@ -1,6 +1,9 @@
 FROM node:8.14.0-alpine
 
-ADD . /app
+COPY . /app
+
 WORKDIR /app
+
+RUN npm i
 
 CMD ["npm", "start"]
