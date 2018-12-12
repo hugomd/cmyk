@@ -1,8 +1,10 @@
-FROM node:8.14.0-alpine
+FROM node:10-alpine
 
 COPY . /app
 
 WORKDIR /app
+
+RUN apk add git
 
 RUN npm i
 
