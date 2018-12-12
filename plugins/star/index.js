@@ -30,7 +30,7 @@ class Star extends BasePlugin {
       if (messageReaction.emoji.name === '⭐') {
         const channelId = message.channel.id
         const guildId = message.guild.id
-        cache.put(id)
+        cache.put(id, true)
         starboard.send(new RichEmbed({
           thumbnail: {
             url: message.author.avatarURL,
