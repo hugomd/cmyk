@@ -12,16 +12,17 @@
 ## Plugins
 * [Ping](./plugins/ping/index.js)
 * [Help](./plugins/help/index.js)
+* [Crypto](./plugins/crypto/index.js)
+* [Poll](./plugins/poll/index.js)
+* [Timer](./plugins/timer/index.js)
+* [Starboard](./plugins/star/index.js)
 
 ## Planned Features
 * A web socket based soundboard that allows you to play available sounds in a voice channel
 * Record audio from voice channels
-* Polls by reacting to a message
 * Simple dynamic plugins, that render inputs in a given template and perform basic operations
-* Message starring (results appear in the `#stars` channel)
 * Last seen message from user
 * Bulk message removal
 * Weather for a given location
 * Reminder system
 * Message flood protection
-* Command editing (mistype a command and edit it to retry)
