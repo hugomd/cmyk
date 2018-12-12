@@ -1,5 +1,3 @@
-const {createServer} = require('http');
-
 const Core = require('./core');
 const logger = require('./utils/logger');
 
@@ -11,7 +9,3 @@ const logger = require('./utils/logger');
 		logger.logError(err);
 	}
 })();
-
-// Fix for now.sh deployments
-const server = createServer(() => {});
-server.listen(3000);
