@@ -52,7 +52,13 @@ class Star extends BasePlugin {
             },
             {
               name: 'Link',
-              value: `[Jump To](https://discordapp.com/channels/${guildId}/${channelId}/${id})`
+              value: `[Jump To](https://discordapp.com/channels/${guildId}/${channelId}/${id})`,
+              inline: true
+            },
+            {
+              name: 'Starred by',
+              value: messageReaction.users.first().toString(),
+              inline: true
             }
           ],
           timestamp: new Date()
