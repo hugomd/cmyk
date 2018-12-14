@@ -18,6 +18,7 @@ class Crypto extends BasePlugin {
 	}
 
 	async handler(msg) {
+		this.status = '✅';
 		super.handler(msg);
 		const coin = this.args[0];
 		if (!coin || !COINS.includes(coin)) {
@@ -44,9 +45,6 @@ class Crypto extends BasePlugin {
 
 	async postHandler(msg) {
 		super.postHandler(msg);
-		// If (this.response && this.status === '❌') {
-		// 	this.response.delete(0);
-		// }
 	}
 }
 

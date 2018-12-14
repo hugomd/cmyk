@@ -15,8 +15,11 @@ class Base {
 	register(client) {
 		this.client = client;
 		client.on('pluginmessage', async msg => {
+			// Reset status
+			this.status = '✅';
 			try {
 				if (this.conf.regex.test(msg)) {
+					// TODO: Instantiate a new version of the class here, to reset any variables from previous invocations
 					await this.checkPermissions(msg);
 					await this.preHandler(msg);
 					await this.handler(msg).catch(() => {
