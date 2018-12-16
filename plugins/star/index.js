@@ -38,6 +38,7 @@ class Star extends BasePlugin {
 				const guildId = message.guild.id;
 				cache.put(id, true);
 				starboard.send(new RichEmbed({
+					color: 16207469,
 					thumbnail: {
 						url: message.author.avatarURL
 					},
