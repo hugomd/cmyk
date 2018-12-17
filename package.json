@@ -32,6 +32,7 @@
     "axios": "0.17.1",
     "chalk": "2.3.0",
     "discord.js": "11.4.2",
+    "is-image": "^2.0.0",
     "memory-cache": "0.2.0",
     "minimist-string": "1.0.2",
     "ms": "2.1.1",

@@ -1,5 +1,6 @@
 const cache = require('memory-cache');
 const {RichEmbed} = require('discord.js');
+const isImage = require('is-image');
 const BasePlugin = require('../plugin-base.js');
 
 class Star extends BasePlugin {
@@ -17,6 +18,7 @@ class Star extends BasePlugin {
 	register(client) {
 		client.on('messageReactionAdd', messageReaction => {
 			const {message, emoji: {name}} = messageReaction;
+			const attachment = message.attachments.first();
 			const {id} = message;
 			if (cache.get(id)) {
 				return;
@@ -37,7 +39,7 @@ class Star extends BasePlugin {
 				const channelId = message.channel.id;
 				const guildId = message.guild.id;
 				cache.put(id, true);
-				starboard.send(new RichEmbed({
+				const embed = {
 					color: 16207469,
 					thumbnail: {
 						url: message.author.avatarURL
@@ -69,7 +71,15 @@ class Star extends BasePlugin {
 						}
 					],
 					timestamp: new Date()
-				}));
+				};
+
+				if (attachment && isImage(attachment.filename)) {
+					embed.image = {
+						url: attachment.url
+					};
+				}
+
+				starboard.send(new RichEmbed(embed));
 			}
 		});
 	}
