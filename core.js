@@ -27,10 +27,10 @@ class Core {
 
 	async load() {
 		logger.logInfo('Loading plugins and setting up...');
-		await this.setPresence();
 		// TODO: Use node-config for configuration
 		// TODO: Setup Database
 		// TODO: Register events
+		await this.setPresence();
 		this.plugins = Object.keys(plugins).map(key => plugins[key].index).filter(key => key !== undefined);
 		this.registerPlugins();
 		this.setupMessageHandlers();
@@ -38,13 +38,11 @@ class Core {
 		logger.logInfo('Done!');
 	}
 
-	async setPresence() {
+	setPresence() {
 		return this.client.user.setPresence({
 			status: 'online',
-			afk: false,
 			game: {
-				name: config.DISCORD_STATUS,
-				url: 'https://g.hu.md/hugo/aqua'
+				name: config.DISCORD_STATUS
 			}
 		});
 	}
@@ -72,7 +70,6 @@ ${pluginconfig.help}
 
 	async connect() {
 		// TODO: Connect to Postgres
-		// Connect to Discord
 		return this.client.login(config.DISCORD_TOKEN).then(async () => {
 			logger.logSuccess('> Connected');
 			logger.logInfo('> Loading bot..');
