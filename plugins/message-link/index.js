@@ -6,7 +6,7 @@ class MessageLink extends BasePlugin {
 	constructor() {
 		super();
 		this.conf = {
-			name: 'message-link',
+			name: 'link',
 			help: 'Retrieves a link to a message on Discord by message ID',
 			regex: new RegExp(`^${config.DISCORD_PREFIX}link`)
 		};
