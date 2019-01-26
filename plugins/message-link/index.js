@@ -19,12 +19,12 @@ class MessageLink extends BasePlugin {
 			return msg.author.send('Retrieving a message link only works in guilds.');
 		}
 
-		if (!this.args[1]) {
+		if (!this.args[0]) {
 			return msg.author.send('You must supply a message ID.');
 		}
 
 		try {
-			const message = await msg.channel.fetchMessage(this.args[1]);
+			const message = await msg.channel.fetchMessage(this.args[0]);
 			if (!message) {
 				return msg.author.send('No message found with that message ID.');
 			}
