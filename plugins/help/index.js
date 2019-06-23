@@ -7,7 +7,7 @@ class Help extends BasePlugin {
 		this.conf = {
 			name: 'help',
 			help: `\`${config.DISCORD_PREFIX}help\` returns help information`,
-			regex: new RegExp(`^${config.DISCORD_PREFIX}help`),
+			regex: new RegExp(`^${this.escapeRegex(config.DISCORD_PREFIX)}help`),
 			react: true
 		};
 	}

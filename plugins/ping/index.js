@@ -7,7 +7,7 @@ class Ping extends BasePlugin {
 		this.conf = {
 			name: 'ping',
 			help: `\`${config.DISCORD_PREFIX}ping\` responds with pong`,
-			regex: new RegExp(`^${config.DISCORD_PREFIX}ping`)
+			regex: new RegExp(`^${this.escapeRegex(config.DISCORD_PREFIX)}ping`)
 		};
 	}
 
