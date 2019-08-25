@@ -32,4 +32,5 @@ deploy:
     - kubectl config set-context default --cluster=k8s --user=gitlab
     - kubectl config use-context default
     - sed -i "s/<VERSION>/${CI_COMMIT_SHA:0:8}/g" deployment.yml
+    - sed -i "s/<DISCORD_TOKEN>/${DISCORD_TOKEN}/g" deployment.yml
     - kubectl apply -f deployment.yml
