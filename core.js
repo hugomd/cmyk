@@ -85,9 +85,11 @@ ${pluginconfig.help}
 			) {
 				return;
 			}
+
 			if (msg.author.bot) {
 				return;
 			}
+
 			logger.logMsg(msg);
 			this.client.emit('pluginmessage', msg);
 		};

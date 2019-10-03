@@ -34,8 +34,8 @@ class Timer extends BasePlugin {
 				} else {
 					await msg.reply(`Your timer for ${ms(durationMs, {long: true})} is up!\n\n\`${message.join(' ')}\``, {reply: msg.author});
 				}
-			} catch (err) {
-				console.log(err);
+			} catch (error) {
+				console.log(error);
 			}
 		}, durationMs);
 	}

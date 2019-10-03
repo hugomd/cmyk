@@ -31,13 +31,16 @@ class Poll extends BasePlugin {
 		if (!question || Array.isArray(question)) {
 			return msg.reply('🚫 You must supply 1 question.');
 		}
+
 		if (!Array.isArray(answers) || answers.length < 2 || answers.length > 26) {
 			return msg.reply('🚫 You must supply between 2 and 26 answers.');
 		}
+
 		let answerMsg = '';
-		for (let i = 0; i < answers.length; i++) {
-			answerMsg += `${getLetter(i)} ${answers[i]}\n`;
+		for (const [i, element] of answers.entries()) {
+			answerMsg += `${getLetter(i)} ${element}\n`;
 		}
+
 		const embed = {
 			title: question,
 			color: 3447003,
@@ -58,8 +61,8 @@ class Poll extends BasePlugin {
 			for (let i = 0; i < answers.length; i++) {
 				await response.react(getLetter(i)); // eslint-disable-line no-await-in-loop
 			}
-		} catch (err) {
-			console.error(err);
+		} catch (error) {
+			console.error(error);
 		}
 	}
 }

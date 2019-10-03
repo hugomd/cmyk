@@ -32,8 +32,8 @@ class MessageLink extends BasePlugin {
 			const {channel: {id: channelId}, guild: {id: guildId}, id} = message;
 
 			msg.author.send(`Here's your direct message link: https://discordapp.com/channels/${guildId}/${channelId}/${id})`);
-		} catch (err) {
-			logger.logError(err);
+		} catch (error) {
+			logger.logError(error);
 		}
 	}
 }
