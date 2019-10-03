@@ -5,7 +5,7 @@ const logger = require('./utils/logger');
 	try {
 		const Bot = new Core();
 		await Bot.run();
-	} catch (err) {
-		logger.logError(err);
+	} catch (error) {
+		logger.logError(error);
 	}
 })();

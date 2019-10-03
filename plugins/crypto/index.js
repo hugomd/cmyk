@@ -36,10 +36,12 @@ class Crypto extends BasePlugin {
 		if (data.Response === 'Error') {
 			throw new Error('Request failed');
 		}
+
 		const {[coin]: {USD: price = null} = null} = data;
 		if (!price) {
 			throw new Error('Failed to fetch price of BTC.');
 		}
+
 		response.edit(`1 ${coin} = **${price} USD**`);
 	}
 

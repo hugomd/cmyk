@@ -28,8 +28,8 @@ class Base {
 					});
 					await this.postHandler(msg);
 				}
-			} catch (err) {
-				logger.logError(err);
+			} catch (error) {
+				logger.logError(error);
 			}
 		});
 	}

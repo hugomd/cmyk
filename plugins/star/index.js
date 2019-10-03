@@ -23,9 +23,11 @@ class Star extends BasePlugin {
 			if (cache.get(id)) {
 				return;
 			}
+
 			if (!message.guild) {
 				return;
 			}
+
 			if (message.author.bot) {
 				return;
 			}
