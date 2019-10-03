@@ -21,9 +21,11 @@ class Help extends BasePlugin {
 				msg.author.send(`No such module ${this.args[0]}`);
 				this.status = '🚫';
 			}
+
 			// Look up individual helptext
 			return;
 		}
+
 		// Otherwise, return with global help
 		msg.author.send(this.client.helpText);
 	}
