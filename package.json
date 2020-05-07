@@ -24,7 +24,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "1.18.3",
+    "nodemon": "^2.0.3",
     "prettier": "1.8.2",
     "xo": "0.25.3"
   },
@@ -37,7 +37,6 @@
     "minimist-string": "1.0.2",
     "ms": "2.1.1",
     "require-all": "2.2.0",
-    "sandbox": "0.8.6",
-    "sequelize": "6.0.0"
+    "sandbox": "0.8.6"
   }
 }
