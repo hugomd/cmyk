@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build, push, and deploy
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout master
+      uses: actions/checkout@v2
+
+    - name: Build container image
+      run: docker build --tag docker.pkg.github.com/hugomd/cmyk/cmyk:$(echo $GITHUB_SHA | head -c7) --tag docker.pkg.github.com/hugomd/cmyk/cmyk:latest .
+
+    - name: Docker login
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: docker login -u hugomd -p $GITHUB_TOKEN docker.pkg.github.com
+      
+    - name: Push image to GitHub Registry
+      run: docker push docker.pkg.github.com/hugomd/cmyk/cmyk
+
+    - name: Save DigitalOcean kubeconfig
+      uses: digitalocean/action-doctl@master
+      env:
+        DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      with:
+        args: kubernetes cluster kubeconfig show madrisa-sgp-01 > $GITHUB_WORKSPACE/.kubeconfig
+
+    - name: Update SHA
+      run: |
+        sed -i "s/<VERSION>/$(echo $GITHUB_SHA | head -c7)/g" deployment.yml
+        sed -i "s/<DISCORD_TOKEN>/${DISCORD_TOKEN}/g" deployment.yml
+
+    - name: Deploy to DigitalOcean Kubernetes
+      run: kubectl --kubeconfig=$GITHUB_WORKSPACE/.kubeconfig apply -f $GITHUB_WORKSPACE/deployment.yml
+
+    - name: Verify deployment
+      run: kubectl --kubeconfig=$GITHUB_WORKSPACE/.kubeconfig -n cmyk rollout status deployment/cmyk

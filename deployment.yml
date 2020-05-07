@@ -11,10 +11,10 @@ spec:
         app: cmyk
     spec:
       imagePullSecrets:
-        - name: regcred
+      - name: github-registry
       containers:
         - name: cmyk
-          image: reg.g.hu.md/hugo/cmyk:<VERSION>
+        - image: docker.pkg.github.com/hugomd/cmyk/cmyk:<VERSION>
           env:
             - name: DISCORD_TOKEN
               value: "<DISCORD_TOKEN>"
