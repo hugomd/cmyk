@@ -37,7 +37,7 @@ class Star extends BasePlugin {
 				return;
 			}
 
-			if (name === 'Star') {
+			if (name.toLowerCase() === 'star') {
 				const channelId = message.channel.id;
 				const guildId = message.guild.id;
 				cache.put(id, true);
