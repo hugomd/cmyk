@@ -31,6 +31,8 @@ jobs:
         args: kubernetes cluster kubeconfig show madrisa-sgp-01 > $GITHUB_WORKSPACE/.kubeconfig
 
     - name: Update SHA
+      env:
+        DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
       run: |
         sed -i "s/<VERSION>/$(echo $GITHUB_SHA | head -c7)/g" deployment.yml
         sed -i "s/<DISCORD_TOKEN>/${DISCORD_TOKEN}/g" deployment.yml
