@@ -14,7 +14,7 @@ spec:
       - name: github-registry
       containers:
         - name: cmyk
-        - image: docker.pkg.github.com/hugomd/cmyk/cmyk:<VERSION>
+          image: docker.pkg.github.com/hugomd/cmyk/cmyk:<VERSION>
           env:
             - name: DISCORD_TOKEN
               value: "<DISCORD_TOKEN>"
