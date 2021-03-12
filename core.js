@@ -30,6 +30,7 @@ class Core {
 		// TODO: Use node-config for configuration
 		// TODO: Setup Database
 		// TODO: Register events
+		this.registerSlashCommands();
 		await this.setPresence();
 		this.plugins = Object.keys(plugins).map(key => plugins[key].index).filter(key => key !== undefined);
 		this.registerPlugins();
@@ -43,6 +44,21 @@ class Core {
 			status: 'online',
 			game: {
 				name: config.DISCORD_STATUS
+			}
+		});
+	}
+
+	registerSlashCommands() {
+		this.client.guilds.cache.each((guild) => {
+			try {
+				this.client.api.applications(this.client.user.id).guilds(guild.id).commands.post({
+					data: {
+						name: 'ping',
+						description: 'ping pong!'
+					}
+				});
+			} catch (error) {
+				logger.logInfo(`No slash command access for guild: ${guild.id}`);
 			}
 		});
 	}
@@ -96,6 +112,9 @@ ${pluginconfig.help}
 
 		this.client.on('message', handler);
 		this.client.on('messageUpdate', (oldMsg, newMsg) => handler(newMsg));
+		this.client.ws.on('INTERACTION_CREATE', (interaction) => {
+			this.client.emit('interactionmessage', interaction);
+		})
 	}
 
 	validateconfig(config) {

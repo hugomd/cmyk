@@ -23,6 +23,18 @@ class Ping extends BasePlugin {
 				);
 			});
 	}
+
+	async interactionHandler(interaction) {
+		this.client.api.interactions(interaction.id, interaction.token).callback.post({
+			data: {
+				type: 4,
+				data: {
+					content: 'Pong!',
+					flags: 64
+				}
+			}
+		})
+	}
 }
 
 module.exports = Ping;

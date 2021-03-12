@@ -32,6 +32,15 @@ class Base {
 				logger.logError(error);
 			}
 		});
+		client.on('interactionmessage', async interaction => {
+			try {
+				if (interaction.data.name === this.conf.name) {
+					await this.interactionHandler(interaction);
+				}
+			} catch (error) {
+				logger.logError(error);
+			}
+		});
 	}
 
 	// TODO
@@ -52,6 +61,8 @@ class Base {
 			msg.react(this.status);
 		}
 	}
+
+	async interactionHandler(interaction) {}
 
 	config() {
 		return this.conf;
