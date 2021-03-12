@@ -21,7 +21,7 @@ jobs:
       run: docker login -u hugomd -p $GITHUB_TOKEN docker.pkg.github.com
       
     - name: Push image to GitHub Registry
-      run: docker push docker.pkg.github.com/hugomd/cmyk/cmyk
+      run: docker push docker.pkg.github.com/hugomd/cmyk/cmyk:$(echo $GITHUB_SHA | head -c7)
 
     - name: Save DigitalOcean kubeconfig
       uses: digitalocean/action-doctl@master
