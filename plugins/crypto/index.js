@@ -20,7 +20,7 @@ class Crypto extends BasePlugin {
 	async handler(msg) {
 		this.status = '✅';
 		super.handler(msg);
-		const coin = this.args[0];
+		const coin = this.args[0].toUpperCase();
 		if (!coin || !COINS.includes(coin)) {
 			msg.author.send(
 				'You need to supply a currency from this list: https://cl.ly/1C063T3D032S/+',
