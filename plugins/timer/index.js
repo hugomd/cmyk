@@ -8,7 +8,7 @@ class Timer extends BasePlugin {
 		this.conf = {
 			name: 'timer',
 			help: `\`${config.DISCORD_PREFIX}timer 5m [your message here]\` pings the channel when the timer is up`,
-			regex: new RegExp(`^${config.DISCORD_PREFIX}timer`),
+			regex: new RegExp(`^${this.escapeRegex(config.DISCORD_PREFIX)}timer`),
 			react: true
 		};
 	}

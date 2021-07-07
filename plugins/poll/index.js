@@ -14,7 +14,7 @@ class Poll extends BasePlugin {
 			help: `\`${
 				config.DISCORD_PREFIX
 			}poll -q '[question]' -a '[answer]' -a '[answer]'\` responds with a poll`,
-			regex: new RegExp(`^${config.DISCORD_PREFIX}poll`)
+			regex: new RegExp(`^${this.escapeRegex(config.DISCORD_PREFIX)}poll`)
 		};
 	}
 

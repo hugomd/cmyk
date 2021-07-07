@@ -12,7 +12,7 @@ class Crypto extends BasePlugin {
 			help: `\`${
 				config.DISCORD_PREFIX
 			}crypto [ETH|Ethereum|BTC|Bitcoin] \` responds with current price of 1 coin`,
-			regex: new RegExp(`^${config.DISCORD_PREFIX}crypto`),
+			regex: new RegExp(`^${this.escapeRegex(config.DISCORD_PREFIX)}crypto`),
 			react: true
 		};
 	}

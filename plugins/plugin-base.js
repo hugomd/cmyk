@@ -67,6 +67,11 @@ class Base {
 	config() {
 		return this.conf;
 	}
+
+	escapeRegex(string) {
+		// https://stackoverflow.com/a/6969486
+		return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+	}
 }
 
 module.exports = Base;
